@@ -1,0 +1,7 @@
+*.pyc
+
+data/input/*
+data/output/*
+
+!.gitkeep
+
