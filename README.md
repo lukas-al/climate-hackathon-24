@@ -3,10 +3,13 @@ Agent based model of interactions between households under climate risk and insu
 
 ## Todo:
 - [] Create the grid based off the UK map
-- [] Put climate risks & household info the grid using input data
+- [] Put climate risks & household info the grid using input data, create representative population distributions, etc...
 - [] Make agent behaviour more sophisticated (hopefully some interesting dynamics emerge!)
+    - Add migration to households? How they select their policies and insurers?
+    - Make insurers more sophisticated in price setting, etc...
 - [] Make climate risk dynamics more realistic (affect multiple households at a time - perhaps just allow for climate events as thing rather than risk)
 - [] Create visualisations of variables such as household location, claims, capital, etc, moving through time
+    - Make all analysis based on geographic location.
 
 ## Structure
 model_outline.drawio.png
