@@ -52,15 +52,10 @@ class ClimateInsuranceModel(mesa.Model):
 
     def _create_households(self) -> None:
         """Create household agents."""
-        used_positions = set()
         for i in range(self.config.n_households):
-            while True:
-                pos = self._get_random_valid_position()
-                if pos not in used_positions:
-                    used_positions.add(pos)
-                    break
-
-            house_value = self.random.normalvariate(200000, 50000)
+            pos = self._get_random_valid_position() # Randomly allocate
+            
+            house_value = self.random.normalvariate(2000000, 500000)
             household = Household(i + self.config.n_insurers, self, pos, house_value)
 
             insurer = self.random.choice(self.insurers)
@@ -103,6 +98,7 @@ class ClimateInsuranceModel(mesa.Model):
                 (agent for agent in cell_contents if isinstance(agent, GridCell)), None
             )
             if grid_cell:
+                print(f"Applying shock to grid cell {grid_cell.pos}")
                 grid_cell.climate_risks.apply_shock(shock_magnitude)
 
     def step(self) -> None:

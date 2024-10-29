@@ -7,10 +7,7 @@ from .agents import Insurer
 def create_model_reporters() -> Dict[str, Callable]:
     """Create the standard set of model-level metric reporters."""
     return {
-        "Mean_Premium_Rate": lambda m: np.mean(
-            [ins.base_premium_rate for ins in m.insurers]
-        ),
-        "Mean_Risk_Premium": lambda m: np.mean(
+        "Mean_Premium": lambda m: np.mean(
             [ins.risk_premium for ins in m.insurers]
         ),
         "Total_Insurer_Capital": lambda m: sum(

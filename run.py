@@ -1,5 +1,6 @@
 from model.model import ClimateInsuranceModel
 from model.types import ModelConfig, ClimateRiskType
+import random
 
 
 def main():
@@ -7,7 +8,7 @@ def main():
     config = ModelConfig(
         n_households=1000,
         n_insurers=5,
-        initial_insurer_capital=1000000.0,
+        initial_insurer_capital=100000.0,
         climate_change_rate=0.01,
         grid_width=50,
         grid_height=50,
@@ -19,16 +20,24 @@ def main():
         },
     )
 
-    print('Initialising model')
+    print("Initialising model")
     model = ClimateInsuranceModel(config)
 
-    print('Running model')
-    # Run simulation
-    for _ in range(100):
+    print("Running model")
+    for i in range(100):
         model.step()
 
-    print('Writing results')
-    # Write results
+        if i == 50:
+            print("Applying shock: 50% increase for 5 days")
+            model.apply_climate_shock(
+                affected_positions=[
+                    (random.randint(0, 49), random.randint(0, 49)) for _ in range(25)
+                ],
+                shock_magnitude=1.1,
+                duration=5,
+            )
+
+    print("Writing results")
     model_results = model.datacollector.get_model_vars_dataframe()
     model_results.to_excel("data/output/collector_df.xlsx")
 

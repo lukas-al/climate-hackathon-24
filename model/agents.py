@@ -84,7 +84,7 @@ class Insurer(mesa.Agent):
     ) -> None:
         super().__init__(unique_id, model)
         self.metrics = InsuranceMetrics(capital=initial_capital)
-        self.base_premium_rate: float = 0.01
+        self.base_premium_rate: float = 0.001
         self.risk_premium: float = 0.005
         self.insured_households: Set[Household] = set()
 
